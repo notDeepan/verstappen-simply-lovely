@@ -1,0 +1,10 @@
+original/
+media/generated/
+vendor/three.module.js
+node_modules/
+.env
+.env.*
+*.log
+*.zip
+.DS_Store
+Thumbs.db
