@@ -4,6 +4,10 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "check": "node --check app.js && node --check helmet.js"
+    "check": "node --check app.js && node --check helmet.js && node --check modules/story.js && node --check modules/media.js && node --check modules/gallery.js",
+    "test": "node --test qa/site.test.js"
+  },
+  "devDependencies": {
+    "axe-core": "^4.13.0"
   }
 }

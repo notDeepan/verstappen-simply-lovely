@@ -31,3 +31,9 @@ All four supplied reference documents were read: Apple, Nike, ThoughtLab and Act
 ## Active helmet: 2024 Imola
 
 The helmet section now uses the public Sketchfab viewer and matching preview for bad_bovy’s Schuberth SF3 ABP model. No AI image edit, logo regeneration, texture extraction or local mesh copy is used. The old generated helmet and procedural geometry are not displayed. See `HELMET-SOURCE.md` for the source, attribution and hosting details.
+
+## September 2026 editorial redesign
+
+`media/rb19-austria.jpg` — Lukas Raich, **FIA F1 Austria 2023 Nr. 1 (3)**, original own-work photograph at https://commons.wikimedia.org/wiki/File:FIA_F1_Austria_2023_Nr._1_(3).jpg . Licensed CC BY-SA 4.0: https://creativecommons.org/licenses/by-sa/4.0/ . Downloaded as a 1920×1080 JPEG; displayed with CSS cropping and tonal treatment. The image adaptation remains CC BY-SA 4.0. Attribution and license links appear in the machine chapter and credits; the archive caption also names the photographer.
+
+The supplied redesign concept board guides typography, scale, dark composition, chapter pacing and editorial crop choices. It is not published as site photography. No new generated person, fabricated quote, fake telemetry, invented car specification or alternate helmet livery was introduced.

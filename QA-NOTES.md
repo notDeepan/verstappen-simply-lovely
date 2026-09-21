@@ -1,44 +1,27 @@
-# Driver layout and transition revision
-
-- Replaced the tilted scarlet banner with a level navy transition, pale text and small red separators.
-- Marquee now has two identical nonshrinking groups, each at least one viewport wide, with no track gap. The animation travels exactly one group width (-50% of the two-group track), keeping the reset continuous.
-- Browser geometry verified at 2560px: 2560px + 2560px groups; 1440px: 1520.046875px + 1520.046875px; 390px: 885.53125px + 885.53125px. Groups have identical text. No horizontal document overflow at those widths. Multiple animation phases observed without the former empty tail.
-- Driver spread capped at 1540px, columns brought closer, portrait height controlled, and career records moved beneath the biography. Mobile has a single-column reading order with the records before the portrait.
-- Visual checks at 2560×1240, 1440×900 and 390×844. Node syntax, HTML nesting and unique IDs passed. Existing global pause and reduced-motion rules apply to the replacement track.
-- Broader scrolling choreography was intentionally deferred as requested.
-
-# Current revision — 16 September 2026
-
-- Hero changed to SIMPLY LOVELY over supplied hero.mp4: autoplay, muted, loop, playsinline. Removed the hero film-launch button and generated portrait request.
-- Actual video playing events observed in the browser; pause and resume controls exercised. Hero and ambient playback suspend offscreen, on hidden tabs and during dialogs.
-- Hero composition checked on the desktop viewport and at 390×844 and 320×740; no horizontal document overflow at the narrow widths (375/375 and 305/305 client/scroll widths, accounting for scrollbars). The tall mobile hero intentionally scrolls.
-- Branded helmet uses bad_bovy’s 2024 Imola model with visible creator attribution. Standalone 3D rendered and rotation was exercised; front and side sponsor markings visually inspected, including Red Bull, Oracle, Mobil 1, Player 0.0, TAG Heuer, EA Sports, Viaplay and Bybit.
-- Important unresolved limit: local cross-origin iframe remained about:blank in the in-app browser, including a minimal isolated embed and the official Viewer API integration. No captured console error established the cause. Embedded rendering has NOT passed verification.
-- Matching preview remains visible until viewerready. A 15-second timeout displays a direct interactive-view link; that link opened the working standalone model. Reference mode removes the iframe (count verified zero); dialog close also removes it. Desktop and mobile preview/dialog layouts checked.
-- Node syntax and local HTML asset/anchor integrity checked after the final changes. No automated whole-site regression suite was added for this visual revision.
-- OS reduced-motion and real-device cross-browser performance were not exhaustively tested. No claim of manufacturer-certified model accuracy or measured field performance.
-
-The older acceptance record below refers to the initial build. Its procedural-helmet and generated-hero checks do not certify the replacement implementation.
-
----
-
-# Verification notes — 15 September 2026
-
-## Completed
-
-- `npm run check`: both JavaScript modules pass Node syntax checks.
-- Static HTML validation: local media/script/font/style references and fragment targets exist; IDs are unique; images have alt attributes.
-- In-app Chromium preview: desktop 1440×900, mobile 390×844, and narrow 320×740 layouts inspected.
-- Narrow navigation now keeps chapter names on one line. Page content has no horizontal overflow at checked widths.
-- Year tabs, next/previous buttons, and keyboard year selection exercised.
-- Gallery filtering and lightbox navigation exercised.
-- Both the video dialog and native controls render; the hero film visibly plays.
-- Helmet: 3D initialization, Heritage/Midnight livery, visor opening, exploded assembly, reset and keyboard rotation exercised. Latest assembled and exploded states visually inspected with no clipped geometry.
-- Latest desktop page image check: no failed image loads; document scroll width equals client width.
-- Latest studio console check: no captured errors or warnings.
+# Redesign QA — 22 September 2026
 
 ## Scope
+Complete supplied specification and concept-board comparison, following repository audit in REDESIGN-AUDIT.md. This replaces the earlier light/navy layout with six connected black editorial chapters. Existing sourced records, two fan films, archive and credited helmet model remain.
 
-This is a local browser acceptance pass, not a cross-browser or real-device certification. Reduced-motion, lazy loading and rendering lifecycle behavior are implemented; OS reduced-motion emulation and WebGL context-loss recovery were not exhaustively tested. No Lighthouse run, field Core Web Vitals, assistive-technology audit or external award evaluation was performed.
+## Verified
+- Syntax checks: app, helmet and all three application modules pass.
+- Seven Node checks pass: media gating, unique internal destinations, local assets, image metadata, deferred/muted films, historical attribution, and JavaScript size budgets.
+- axe-core: 0 violations, 40 passing checks, across WCAG 2 A/AA, WCAG 2.1 AA and best-practice rules in the instrumented local page. Image/video background contrast requires manual inspection and is reported as incomplete by axe; it is not counted as an automated pass.
+- Visually inspected 1440×900, 1920×1080, 2560×1440, 768×1024, 390×844 and 320×740 compositions. The desktop journey pins; tablet/mobile read vertically. Final narrow-width measurements show no document overflow or overflowing headings. Fixed a small hero overflow, oversized KEEP CHASING type, and the mobile helmet image extending beyond its section.
+- Desktop hero, driver, all year destinations, machine, mind, helmet, archive and finale inspected. Chapter jumps align headings below the fixed navigation. Four year controls move the horizontal sequence and preserve visible source links.
+- Gallery category filtering, arrow-key photo navigation, Escape, and focus return verified. One-photo category remains navigable. Menu opens as a native modal, closes on selection, and transfers focus to the chosen section.
+- Motion-off pauses every background film and tears down horizontal pinning; all four years remain readable and chapter navigation works. OS reduced-motion preference follows the same app path and has CSS overrides; OS-level emulation was not available in this browser, so that signal was code-reviewed rather than separately simulated.
+- Foreground fan film plays through native controls; closing pauses it. Hero and finale silently autoplay and loop; lower films are not fetched before entering view. Hidden-page and dialog gating also covered by the media-policy test.
+- Helmet model loaded successfully in the browser, showing the creator's actual detailed livery. Reference mode removes the iframe; closing restores focus to Explore in 3D and leaves zero iframes. The retained timeout/direct-view fallback covers unavailable third-party delivery. Hosting and WebGL capability remain external dependencies.
+- No first-party console errors or broken loaded images in the final local pass.
 
-Campaign hero WebP: 149,690 bytes. Helmet WebP: 84,112 bytes. The Three.js module is loaded on demand after the studio is opened. Film files and stills come from the supplied archive. The code-built 3D study is intentionally separate from the generated campaign render.
+## Performance observations
+Instrumented localhost Chromium session, warm local assets, no throttling: first contentful paint 104 ms, observed LCP 104 ms, CLS 0, DOM ready 115 ms. Approximately 588 KB transferred at the first audit sample; this is a point-in-time sample, not the eventual full film download size. A 212 ms long task occurred in the instrumented session, which also runs axe; these are diagnostic figures, not field Core Web Vitals or a Lighthouse score.
+
+Application JavaScript stays below 50 KB; application plus the local GSAP/ScrollTrigger libraries stays below 250 KB uncompressed. Hero film is approximately 2.83 MB; secondary film approximately 0.51 MB. The new 1920px RB19 JPEG is 312 KB. No WebGL, Sketchfab API or model is loaded on first paint. Fonts and critical poster are local; only display font and hero poster are preloaded.
+
+## Remaining practical limits
+Real-device Safari/iOS, Android low-power modes, throttled mobile network and field INP have not been measured. Browser viewport tests are not a substitute for those devices. Fan-film stills are intentionally atmospheric and may not depict the historical event alongside them; this is disclosed in the journey and credits. The helmet is a credited artist reconstruction, not manufacturer-certified geometry. No award outcome is promised.
+
+## Reproduce
+Run `npm ci`, `npm run check`, `npm test`, then serve the repository via a static HTTP server. Generate `qa/preview.html` with `python qa/prepare.py` and open `/qa/preview.html` to run the local axe and PerformanceObserver instrumentation. Results are stored in the page's hidden `#qa-accessibility` and `#qa-metrics` outputs. The generated preview is ignored by Git, and the production index never loads these audit scripts or axe.

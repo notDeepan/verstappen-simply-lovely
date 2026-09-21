@@ -22,23 +22,27 @@ Open http://127.0.0.1:8080. If Python is unavailable, use any static HTTP server
 | --- | --- |
 | `index.html` | Story, dated milestones, imagery, chapter links, accessibility labels and metadata |
 | `styles.css` | Colors in `:root`, typography, section layouts, responsive breakpoints |
-| `app.js` | Dialogs, year tabs, archive filtering, video playback and GSAP choreography |
+| `app.js` | Application lifecycle, accessible dialogs and chapter navigation |
+| `modules/story.js` | GSAP choreography, horizontal journey, chapter progress and cursor |
+| `modules/media.js` | Shared offscreen, motion-preference and modal playback policy |
+| `modules/gallery.js` | Archive filtering and keyboard lightbox navigation |
+| `qa/` | Node checks and opt-in local accessibility/performance audit |
 | `helmet.js` | On-demand Sketchfab embed for bad_bovy’s detailed 2024 Imola Schuberth SF3 ABP helmet |
 | `media/generated/` | Retired GPT Image portrait and helmet concept masters; neither is displayed on the active page |
 | `media/` | Supplied fan-film footage and photographs |
 | `fonts/`, `vendor/`, `licenses/` | Self-hosted fonts, pinned libraries and notices |
 
-The design progresses from a silent looping racing film with the SIMPLY LOVELY headline through the driver, four career chapters, a film interlude, helmet lab, photo archive and official destinations. Desktop and mobile have separately composed image crops and layouts.
+The redesign follows the supplied cinematic concept: MAX VERSTAPPEN over a silent film, a speed interlude, six connected editorial chapters, official destinations, and a full-screen SIMPLY LOVELY film finale. See REDESIGN-AUDIT.md for the architecture audit and QA-NOTES.md for measured results and limitations.
 
 ## Interactions
 
-- Four year tabs: click or use arrow keys, Home and End.
-- Gallery: filter by mood; open photos and navigate with arrows; Escape closes.
-- Films: native playback controls; close or hide the page to pause.
-- Hero and ambient footage: silent autoplay, loop and inline mobile playback; pause offscreen, when the page is hidden, or while a dialog is open. Small pause controls remain available. The hero has no Watch the film button.
-- Helmet studio: drag to rotate, scroll/pinch to zoom, and use the hosted viewer’s native controls. Switch to Reference image for a still view; Reset view reloads the initial camera. Invented liveries and artificial shell separation were removed.
-- All overlays use native dialogs with focus return and Escape handling.
-- OS reduced-motion preference disables scroll choreography and automatic motion; visitors can explicitly request playback.
+- Persistent six-chapter navigation, current-position indicator, page progress and an accessible full-screen menu.
+- The four-year journey scrolls horizontally on wide, tall desktop viewports. Year links and keyboard focus on source links move to the corresponding moment. Tablet, mobile and motion-off use a vertical narrative.
+- Archive categories filter an asymmetric photo exhibition. Open photographs, use Left/Right arrows, and press Escape to close.
+- All background films are silent and loop. A shared controller pauses them offscreen, when hidden, or under dialogs. The Motion control also removes scroll choreography.
+- The mind chapter includes an explicit film player with native controls. Closing or hiding the page pauses it.
+- Helmet studio: drag to rotate, scroll/pinch to zoom, use Reference image for a static view, and Reset view to reload the original camera.
+- Native dialogs trap focus, support Escape and return focus. OS reduced-motion preferences disable automatic motion.
 
 The helmet viewer is created only after opening the studio and removed on dialog close or page exit, releasing the embedded renderer. The matching preview remains visible until the Viewer API confirms the 3D scene is ready. After 15 seconds without readiness, a direct interactive-view link appears. The Reference image option is always available. The model is streamed from Sketchfab, with its do-not-track option enabled. It requires internet access and is not included as an editable GLB. Its appearance and hosting remain controlled by the creator. The preview depicts the same model. This is an artist reconstruction, not manufacturer-certified geometry.
 
